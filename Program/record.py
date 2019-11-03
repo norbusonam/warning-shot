@@ -8,11 +8,10 @@ def record_sample():
     
     myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
     sd.wait()  # Wait until recording is finished
-    write("test.wav", 44100, myrecording)
 
     return myrecording 
 
 def record_extended(myrecording):
     fs = 44100 # Sample rate
-    myrecording2 = sd.playrec(myrecording, fs, channels = 2)
+    myrecording2 = sd.playrec(myrecording, fs, channels = 1)
     sd.wait()

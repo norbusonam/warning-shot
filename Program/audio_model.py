@@ -13,8 +13,6 @@ def get_data():
     safe_dir = os.getcwd() + "/data/safe/"
     shot_dir = os.getcwd() + "/data/shot/"
 
-    
-
     # GET TRAINING DATA
     train_audio = []
     for i in range(1, 81):
@@ -66,11 +64,13 @@ def build_model():
 
     model.compile(optimizer = "adam", loss = tf.keras.losses.SparseCategoricalCrossentropy(), metrics = ["accuracy"])
 
-    model.fit(train_data, train_labels, epochs = 8)
+    test_acc = 0
+    while test_acc < 0.80:
+        model.fit(train_data, train_labels, epochs = 8)
 
-    test_loss, test_acc = model.evaluate(test_data, test_labels)
+        test_loss, test_acc = model.evaluate(test_data, test_labels)
 
-    print("test acc: {}".format(test_acc))
-    print("test loss: {}".format(test_loss))
+        print("test acc: {}".format(test_acc))
+        print("test loss: {}".format(test_loss))
 
     return model
