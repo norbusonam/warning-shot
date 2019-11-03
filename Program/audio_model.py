@@ -1,9 +1,12 @@
+import settings
 from tensorflow import keras
 import tensorflow as tf
 import numpy as np
 from scipy.io.wavfile import read
 import os
 import pickle
+
+channels = settings.channels
 
 def get_data():
     '''
@@ -56,10 +59,10 @@ def build_model():
     test_data = test_data
     
     model = keras.Sequential([
-        keras.layers.Flatten(input_shape = (132300, 2)),
-        keras.layers.Dense(12, activation = "relu"),
-        keras.layers.Dense(6, activation = "relu"),
-        keras.layers.Dense(2, activation = "softmax")
+        keras.layers.Flatten(input_shape = (132300, channels)),
+        keras.layers.Dense(100, activation = "relu"),
+        keras.layers.Dense(20, activation = "softmax"),
+        keras.layers.Dense(5, activation = "relu")
     ])
 
     model.compile(optimizer = "adam", loss = tf.keras.losses.SparseCategoricalCrossentropy(), metrics = ["accuracy"])
