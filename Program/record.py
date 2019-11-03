@@ -1,5 +1,5 @@
 import settings
-mport sounddevice as sd
+import sounddevice as sd
 from scipy.io.wavfile import write
 
 fs = settings.fs
