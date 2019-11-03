@@ -1,0 +1,112 @@
+body {
+    background-color:#FFFFFF;
+    margin: 0px auto;
+    padding: 0px;
+    min-width: 800px;
+}
+
+p {
+    font: 100% Arial, Helvetica, sans-serif;
+}
+
+#banner {
+    background-color: #000000;
+    width: 101vw;
+    height: 100px;
+    min-width: 800px;
+}
+
+#banner img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100px;
+    width: auto;
+}
+
+.form-style {
+	font: 95% Arial, Helvetica, sans-serif;
+	max-width: 400px;
+	margin: 10px auto;
+	padding: 16px;
+    background: #FFFFFF;
+    text-align: center;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    
+}
+
+.parallelogram {
+    max-width: 120px;
+    height: 40px;
+    background: rgb(218, 18, 24);
+    transform: skewX(-30deg);
+    transform-origin: top;
+    margin: 10px auto;
+    margin-left: 150px;
+    display: flex;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+}
+.parallelogram2{
+    max-width: 120px;
+    height: 40px;
+    background: black;
+    transform: skewX(-30deg);
+    transform-origin: top;
+    margin: 10px auto;
+    margin-left: 150px;
+    display: flex;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+#SignUp{
+    transform: skewX(30deg);
+    font: 150% Arial, Avenir Next, sans-serif;
+	color: #FFFFFF;
+}
+
+label {
+    font: Arial;
+    font-size: 12pt;
+    color: #000000;
+    margin-left: -160px;
+}
+
+#school_label {
+    margin-left: -171px;
+}
+
+#info {
+    transform: skewX(30deg);
+    font: 150% Arial, Avenir Next, sans-serif;
+    color: #FFFFFF;
+}
+	
+pre {
+    font: 95% Arial;
+    padding: 10px;
+    font-size: 12pt;
+    text-align: center;
+}
+
+input {
+    font: 95% Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    max-width: 300px;
+    margin: 10px auto;
+    padding: 5px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+}
+
+#school_input {
+    margin-left: 4px;
+}
+
+#submit_form{
+    border-radius: 20%;
+}
