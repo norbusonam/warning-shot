@@ -1,4 +1,3 @@
-# empty file
 from tensorflow import keras
 import numpy as np
 from scipy.io.wavfile import read
