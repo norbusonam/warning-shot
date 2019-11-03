@@ -1,42 +1,44 @@
 from tensorflow import keras
+import tensorflow as tf
 import numpy as np
 from scipy.io.wavfile import read
 import os
+import pickle
 
 def get_data():
     '''
     gives data to build model
     '''
 
-    safe_dir = os.getcwd() + "/data/safe/" 
-    shot_dir = os.getcwd() + "/data/shot/" 
+    safe_dir = os.getcwd() + "/data/safe/"
+    shot_dir = os.getcwd() + "/data/shot/"
 
     
 
     # GET TRAINING DATA
     train_audio = []
-    for i in range(1, 56):
+    for i in range(1, 81):
         audio = read(safe_dir + "save_{}.wav".format(i))[1]
         train_audio.append(audio)
-    train_labels = [False] * 55
+    train_labels = [0] * 80
 
-    for i in range(1, 26):
+    for i in range(1, 91):
         audio = read(shot_dir + "shot_{}.wav".format(i))[1]
         train_audio.append(audio)
-    train_labels += [True] * 25
+    train_labels += [1] * 90
 
     # GET TESTING DATA
     test_audio = []
-    for i in range(56, 70):
+    for i in range(81, 101):
         audio = read(safe_dir + "save_{}.wav".format(i))[1]
         test_audio.append(audio)
-    test_labels = [False] * 14
+    test_labels = [0] * 20
 
-    for i in range(26, 32):
+    for i in range(91, 101):
         audio = read(shot_dir + "shot_{}.wav".format(i))[1]
         test_audio.append(audio)
-    test_labels += [True] * 6
-
+    test_labels += [1] * 10
+    
     train_audio = np.asarray(train_audio)
     train_labels = np.asarray(train_labels)
     test_audio = np.asarray(test_audio)
@@ -45,6 +47,7 @@ def get_data():
     return (train_audio, train_labels), (test_audio, test_labels)
 
 def build_model():
+
     '''
     builds and returns ML model
     '''
@@ -56,17 +59,18 @@ def build_model():
     
     model = keras.Sequential([
         keras.layers.Flatten(input_shape = (132300, 2)),
-        keras.layers.Dense(100, activation = "relu"),
-        keras.layers.Dense(20, activation = "softmax"),
-        keras.layers.Dense(5, activation = "relu")
+        keras.layers.Dense(12, activation = "relu"),
+        keras.layers.Dense(6, activation = "relu"),
+        keras.layers.Dense(2, activation = "softmax")
     ])
 
-    model.compile(optimizer = "adam", loss = "sparse_categorical_crossentropy", metrics = ["accuracy"])
+    model.compile(optimizer = "adam", loss = tf.keras.losses.SparseCategoricalCrossentropy(), metrics = ["accuracy"])
 
-    model.fit(train_data, train_labels, epochs = 20)
+    model.fit(train_data, train_labels, epochs = 8)
 
     test_loss, test_acc = model.evaluate(test_data, test_labels)
 
     print("test acc: {}".format(test_acc))
+    print("test loss: {}".format(test_loss))
 
     return model

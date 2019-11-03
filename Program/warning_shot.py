@@ -1,8 +1,8 @@
 import audio_model
+import alert_system
 import record
-import time
-import sounddevice as sd
 import numpy as np
+import sounddevice as sd
 
 def status_operations(status, model):
     
@@ -10,20 +10,17 @@ def status_operations(status, model):
         # *not implementing yet* Get overlapping recordings - 2 second overlap
         recording = record.record_sample()
         recording = np.asarray([recording])
-        prediction = model.predict(recording)
-        shot = np.argmax(prediction[0])
-        if shot:
+        prediction = model.predict(recording)[0][0]
+        if prediction == 1:
             status = "recording"
             break
+        else:
+            print("No Clap")
 
-        # model = keras.Sequ
-
-       # if (model.evaluate(recording))
-        
-        # Keras.layers.Flatten
-            #break
     if status == "recording":
         print("Gunshot detected.")
+        print("Sending allerts...")
+        alert_system.send_message("West Wing,Room 1C13")
         print("Current Status: Recording")
         seconds = 10
         fs = 44100
