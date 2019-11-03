@@ -12,17 +12,17 @@ def record_sample():
     seconds = 3  # Duration of recording
     
     try:
-		myrecording = sd.rec(int(fs * seconds), fs, channels)
+        myrecording = sd.rec(int(fs * seconds), fs, channels)
         sd.wait()  # Wait until recording is finished
-	except:
-		settings.channels = 1
-		myrecording = sd.rec(int(fs * seconds), fs, channels=1)
+    except:
+        settings.channels = 1
+        myrecording = sd.rec(int(fs * seconds), fs, channels=1)
         sd.wait()  # Wait until recording is finished
     
     write("test.wav", 44100, myrecording)
 
-	sd.wait()  # Wait until recording is finished
-	return myrecording
+    sd.wait()  # Wait until recording is finished
+    return myrecording
 
 def record_extended(myrecording):
     myrecording2 = sd.playrec(myrecording, fs, channels)
