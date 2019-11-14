@@ -12,7 +12,7 @@ Warning Shot uses machine learning algorithms trained to recognize specific soun
 
 Python was chosen as the main language used when building Warning Shot. For the machine learning algorithms the Tensorflow library was utilized. To create a signup form to send SMS messages HTML and CSS were used to create a front end website that was connected to Django and Twilio as backend code.
 
-## What's next for warning shot'
+## What's next for warning shot
 
 Developing a stronger machine learning accuracy rating and building features that allow Warning Shot to be a fully implementable product for schools and common areas such as malls, concerts, and movie theaters.
 
